@@ -1,0 +1,94 @@
+<html>
+	<body>
+			<script>
+				/*
+					* tomxat7
+				*/
+					var Solution2  =(function(){
+						
+						/*
+							*Private Local Var
+						*/
+						
+						var Var_Dvider=11010, Dvide_Array = [] , Array_Count = 0, i;
+						var Dvide_ret, Dvide_result=0, _Dvide_Print = "",Dvide_Error;
+						
+						/*
+							* @Check_Binary method 
+								{param} : N이 0과 1로만 된 수라면 통과 그렇지 않은 안티패턴이라면 에러를 만들어 낸다.
+						*/
+						
+						var Check_Binary = function(N){
+							if(typeof (N) === "number" && N !== undefined){
+								Var_Dvider = N;
+							}
+							Dvide_Error = 0 , i =0;
+							
+							for(; ( Var_Dvider>9); Var_Dvider/=10){
+								if(Math.round(Var_Dvider%10) === 0 || Math.round(Var_Dvider%10) === 1){
+									Dvide_Array[Array_Count++] = Math.round(Var_Dvider%10);
+								}
+								else{
+										Dvide_Error++;
+								}
+							}
+							if(N < 10){
+								if(!(N === 0 || N === 1)){
+									Dvide_Error++;
+								}
+							}
+							alert("ERROR:"+Dvide_Error + ", SUCCESS:"+Array_Count);
+							
+							if(Dvide_Error === 0){
+								Dvide_Array[Array_Count] = Math.floor(Var_Dvider);
+							}
+							else{
+								return false;
+							}
+							return true;
+						}
+						
+						/*
+						 *@Solution_Printer method
+							{param} : 정상적인 값이 였었다면 호출되어야만 하는 함수이며, 결과를 화면에 프린트 한다.
+						*/
+						
+						var Solution_Printer = function(){
+							for(i=0; i<=Array_Count; i++){
+								
+								Dvide_ret = Dvide_Array[i]
+								Dvide_result += (Dvide_ret << i);
+								_Dvide_Print += Dvide_Array[Array_Count-i];
+							}
+							document.write(_Dvide_Print + "=" + Dvide_result);	
+						}
+						
+						/*
+						 *@Solution_Solver method
+							{param} :  0과 1로만 이루어진 정수를 받는다.
+						*/
+						
+						var Solution_Sovler = (function(N){
+							
+							if(Check_Binary(N)){
+								Solution_Printer.call(this);
+							}
+							else{
+								document.write("ERROR:"+Dvide_Error + ", SUCCESS:"+Array_Count);
+							}
+						});
+						
+						/*
+						 *@Solution privillege Object
+							:참조 권한을 부여한다.
+						*/
+					
+						return {
+							Solve : Solution_Sovler
+						}
+					
+					})();
+					Solution2.Solve(13211);
+			</script>
+	</body>
+</html>
